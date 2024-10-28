@@ -1,2 +1,19 @@
-# android_gps_health_tracker
-An app designed to collect and send location and health data to a server, featuring background data collection for continuous monitoring.
+# 画面
+1. ニックネーム登録画面
+2. 情報入力画面（ダイアログ）
+3. ホーム画面
+4. 設定画面
+
+# 機能
+- 認証（匿名）
+- ユーザー情報登録 / 更新
+- 
+
+
+
+
+# 設計（アーキテクチャ）
+Clean Architectureを参考にしつつ、Domain層に他の層が依存するように設定した
+
+
+# ユースケース
