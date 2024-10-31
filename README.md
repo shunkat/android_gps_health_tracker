@@ -15,15 +15,31 @@
   - GPSと同様
 
 # 設計（アーキテクチャ）
-Clean Architectureを参考にしつつ、Domain層に他の層が依存するように設定した
+Google公式の推奨アーキテクチャを参考に作成した。
+
+三つのレイヤーに分かれており、UI / Domain / Dataがある。
+UIにはCompose関数と、ViewModelを配置。
+Domainには、Usecaseの形でまとめたビジネスロジックを配置
+Dataには、ローカルやFirestore、GPSデータ、Healthデータと直接やりとりするDatasourceと、それを操作しつつ、ビジネスロジックを記述するためのrepositoryを配置する。
 
 結果的にディレクトリ構成は以下のようになる
 ```
-
+/root
 
 ```
 
 # ユースケース
 
 
-## メモ: テスト
+## メモ
+- androidViewModelではなくそれの継承元のviewModelクラスを使うようにしよう
+
+### テストする項目
+推奨アーキテクチャによると必須とされているもの
+- フローを含むViewModelの単体テスト
+- データソースとレポジトリの単体テスト
+- UIテスト
+
+- （この下はわからない）
+- StateFlow？
+- モックよりフェイク優先？
