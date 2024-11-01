@@ -16,6 +16,7 @@
 
 # 設計（アーキテクチャ）
 Google公式の推奨アーキテクチャを参考に作成した。
+試行錯誤の歴史は[このスクラップ](https://zenn.dev/shun1997/scraps/90916eb0f048b4)にまとめてあります。
 
 三つのレイヤーに分かれており、UI / Domain / Dataがある。
 UIにはCompose関数と、ViewModelを配置。
