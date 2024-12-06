@@ -55,17 +55,47 @@ testフォルダやandroidtestフォルダ、resフォルダはrootと同じ階�
 │       └── auth
 ├── data
 │   ├── repository
-│   │   ├── UserRepository.kt
 │   │   ├── GpsRepository.kt
-│   │   └── HealthRepository.kt
-│   ├── entity
-│   │   ├── UserEntity.kt
-│   │   ├── GpsEntity.kt
-│   │   └── HealthEntity.kt
-│   └── infra
-│       ├── remoteDB
-│       ├── localDB
-│       └── device
+│   │   ├── HealthRepository.kt
+│   │   ├── ReportRepository.kt
+│   │   └── UserRepository.kt
+│   └── source
+│       ├── gps
+│       │   ├── Gps.kt
+│       │   ├── GpsModelMappingExt.kt
+│       │   ├── local
+│       │   │   ├── LocalGps.kt
+│       │   │   └── LocalGpsSource.kt
+│       │   └── network
+│       │       ├── NetworkGps.kt
+│       │       └── NetworkGpsSource.kt
+│       ├── health
+│       │   ├── Health.kt
+│       │   ├── HealthModelMappingExt.kt
+│       │   ├── local
+│       │   │   ├── LocalHealth.kt
+│       │   │   └── LocalHealthSource.kt
+│       │   └── network
+│       │       ├── NetworkHealth.kt
+│       │       └── NetworkHealthSource.kt
+│       ├── report
+│       │   ├── Report.kt
+│       │   ├── ReportModelMappingExt.kt
+│       │   ├── local
+│       │   │   ├── LocalReport.kt
+│       │   │   └── LocalReportSource.kt
+│       │   └── network
+│       │       ├── NetworkReport.kt
+│       │       └── NetworkReportSource.kt
+│       └── user
+│           ├── User.kt
+│           ├── UserModelMappingExt.kt
+│           ├── local
+│           │   ├── LocalUser.kt
+│           │   └── LocalUserSource.kt
+│           └── network
+│               ├── NetworkUser.kt
+│               └── NetworkUserSource.kt
 ├── di
 │   ├── AppModule.kt
 │   ├── RepositoryModule.kt
@@ -84,7 +114,3 @@ testフォルダやandroidtestフォルダ、resフォルダはrootと同じ階�
 - フローを含むViewModelの単体テスト
 - データソースとレポジトリの単体テスト
 - UIテスト
-
-- （この下はわからない）
-- StateFlow？
-- モックよりフェイク優先？
