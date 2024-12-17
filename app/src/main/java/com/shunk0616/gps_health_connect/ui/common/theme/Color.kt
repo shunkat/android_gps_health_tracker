@@ -1,4 +1,4 @@
-package com.shunk0616.gps_health_connect.ui.common.theme
+package com.shunk0616.gpshealthconnect.ui.common.theme
 
 import androidx.compose.ui.graphics.Color
 

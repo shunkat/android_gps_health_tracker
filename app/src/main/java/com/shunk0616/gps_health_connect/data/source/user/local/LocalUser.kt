@@ -1,3 +1,3 @@
-package com.shunk0616.gps_health_connect.data.source.user.local
+package com.shunk0616.gpshealthconnect.data.source.user.local
 
 class LocalUser

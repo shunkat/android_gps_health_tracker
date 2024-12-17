@@ -1,3 +1,3 @@
-package com.shunk0616.gps_health_connect.data.repository
+package com.shunk0616.gpshealthconnect.data.repository
 
 class UserRepository

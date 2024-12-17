@@ -1,3 +1,3 @@
-package com.shunk0616.gps_health_connect.data.source.gps
+package com.shunk0616.gpshealthconnect.data.source.gps
 
 class GpsModelMappingExt

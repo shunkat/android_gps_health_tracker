@@ -1,4 +1,4 @@
-package com.shunk0616.gps_health_connect
+package com.shunk0616.gpshealthconnect
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

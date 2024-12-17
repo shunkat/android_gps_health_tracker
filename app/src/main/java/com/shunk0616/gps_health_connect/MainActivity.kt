@@ -1,4 +1,4 @@
-package com.shunk0616.gps_health_connect
+package com.shunk0616.gpshealthconnect
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,13 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.shunk0616.gps_health_connect.ui.common.theme.Gps_health_connectTheme
+import com.shunk0616.gpshealthconnect.ui.common.theme.gpshealthconnectTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Gps_health_connectTheme {
+            gpshealthconnectTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -43,7 +43,7 @@ fun Greeting(
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    Gps_health_connectTheme {
+    gpshealthconnectTheme {
         Greeting("Android")
     }
 }
