@@ -7,6 +7,19 @@
 ## 記述時のルール
 [Googleのスタイルガイド](https://developer.android.com/kotlin/style-guide?hl=ja)に準拠する
 
+## PR作成時のルール
+actionsでlinterのチェックは入るが、自分でも気をつけること。
+
+チェックは
+
+> ./gradlew ktlintCheck
+
+自動フォーマットは
+
+> ./gradlew ktlintFormat
+
+でできる。
+
 ## gitブランチルール
 - デフォルトブランチをmainとしたgit flowを使う
 - トピックブランチはfeat/[変更を端的に表した短文]という命名にする
