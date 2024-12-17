@@ -44,6 +44,13 @@ jobs:
         - name: Run Ktlint
           run: ./gradlew ktlintCheck
 
+    unit_test:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Run Unit Test
+          run: ./gradlew test
+
     # この下の部分でエラーになったので、一時的にコメントアウトしておく
-    # unit_test:
     # instrumented_test:
