@@ -28,9 +28,15 @@ jobs:
               ${{ runner.os }}-gradle-
         - name: Build with Gradle
           run: ./gradlew build
-       
+    lint:
+        runs-on: ubuntu-latest
+        steps: 
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Run Lint
+          run: ./gradlew lint
+
     # この下の部分でエラーになったので、一時的にコメントアウトしておく
-    # lint:
     # ktlint:
     # unit_test:
     # instrumented_test:
