@@ -1,14 +1,15 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
-    namespace = "com.shunk0616.gps_health_connect"
+    namespace = "com.shunk0616.gpshealthconnect"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.shunk0616.gps_health_connect"
+        applicationId = "com.shunk0616.gpshealthconnect"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

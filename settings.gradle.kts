@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "gps_health_connect"
+rootProject.name = "gpshealthconnect"
 include(":app")

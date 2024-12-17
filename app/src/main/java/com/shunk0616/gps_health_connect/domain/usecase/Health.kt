@@ -1,1 +1,3 @@
-package com.shunk0616.gps_health_connect.domain.usecase
+package com.shunk0616.gpshealthconnect.domain.usecase
+
+class Health

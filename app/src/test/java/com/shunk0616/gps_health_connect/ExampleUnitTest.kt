@@ -1,8 +1,7 @@
-package com.shunk0616.gps_health_connect
+package com.shunk0616.gpshealthconnect
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
