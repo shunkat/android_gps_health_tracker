@@ -1,6 +1,6 @@
 package com.shunk0616.gps_health_connect
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
