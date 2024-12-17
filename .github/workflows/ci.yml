@@ -35,11 +35,6 @@ jobs:
           uses: actions/checkout@v4
         - name: Run Lint
           run: ./gradlew lint
-        - uses: yutailang0119/action-android-lint@v4
-          with:
-            report-path: build/reports/*.xml
-            ignore-warnings: true
-          continue-on-error: false
 
     # この下の部分でエラーになったので、一時的にコメントアウトしておく
     # ktlint:
