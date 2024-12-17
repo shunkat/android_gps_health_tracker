@@ -121,3 +121,7 @@ testフォルダやandroidtestフォルダ、resフォルダはrootと同じ階�
 │   └── NetworkModule.kt
 └── MainActivity.kt
 ```
+
+
+## 環境
+- Gradle JDK: 17.0.7
