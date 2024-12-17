@@ -10,8 +10,24 @@ on:
 
 jobs:
     build:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Set up JDK 17
+          uses: actions/setup-java@v2
+          with:
+            distribution: 'zulu'
+            java-version: 17
+        - name: use Cache
+          uses: actions/cache@v2
+          with:
+            path: ~/.gradle/caches
+            key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+            restore-keys: |
+              ${{ runner.os }}-gradle-
+
     lint:
     ktlint:
     unit_test:
     instrumented_test:
-        
