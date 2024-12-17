@@ -12,5 +12,5 @@
 - トピックブランチはfeat/[変更を端的に表した短文]という命名にする
   - 例えば、認証機能追加ならfeat/add-authentication
 - プルリクエストのマージ時に、topic→developはsquashし、develop→mainはrebaseする
-
+  - 開発初期の0→1はPRの粒度が大きくなる。しかし、無理やり小さくするのは難しいので、topicブランチの子ブランチを作成して、子ブランチからtopicブランチ本体へのマージの時にsquashすることにした。
 
