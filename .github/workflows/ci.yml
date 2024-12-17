@@ -28,9 +28,20 @@ jobs:
               ${{ runner.os }}-gradle-
         - name: Build with Gradle
           run: ./gradlew build
-       
+    lint:
+        runs-on: ubuntu-latest
+        steps: 
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Run Lint
+          run: ./gradlew lint
+        - uses: yutailang0119/action-android-lint@v4
+          with:
+            report-path: build/reports/*.xml
+            ignore-warnings: true
+          continue-on-error: false
+
     # この下の部分でエラーになったので、一時的にコメントアウトしておく
-    # lint:
     # ktlint:
     # unit_test:
     # instrumented_test:
