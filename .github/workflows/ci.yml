@@ -3,10 +3,6 @@ name: ci
 on:
     pull_request:
         types: [opened, synchronize, reopened]
-    # TODO: デバッグ用なので、developブランチに入れる前に消す
-    push:
-        branches:
-            - feat/ci*
 
 jobs:
     build:
