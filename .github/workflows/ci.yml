@@ -36,7 +36,14 @@ jobs:
         - name: Run Lint
           run: ./gradlew lint
 
+    ktlint:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Run Ktlint
+          run: ./gradlew ktlintCheck
+
     # この下の部分でエラーになったので、一時的にコメントアウトしておく
-    # ktlint:
     # unit_test:
     # instrumented_test:

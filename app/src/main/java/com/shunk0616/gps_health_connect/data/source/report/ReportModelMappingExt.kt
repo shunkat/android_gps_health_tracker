@@ -1,4 +1,3 @@
-package com.shunk0616.gps_health_connect.data.source.report
+package com.shunk0616.gpshealthconnect.data.source.report
 
-class ReportModelMappingExt {
-}
+class ReportModelMappingExt
