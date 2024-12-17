@@ -7,5 +7,5 @@ open class Health(
     val id: String,
     val startTime: Instant,
     val endTime: Instant,
-    val sourceApp: String,
+    val sourceApp: String
 )
