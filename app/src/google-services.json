@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "732801810557",
+    "project_id": "android-gps-health-connect",
+    "storage_bucket": "android-gps-health-connect.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732801810557:android:7fd046d34f9d824133b114",
+        "android_client_info": {
+          "package_name": "com.shunk0616.gpshealthconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_pjz7jnp-s6HSINudZsYV2hh4K3ytMdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
