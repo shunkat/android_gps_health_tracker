@@ -1,3 +1,3 @@
 package com.shunk0616.gpshealthconnect.ui.setting
 
-class SettingPage
+class SettingScreen
