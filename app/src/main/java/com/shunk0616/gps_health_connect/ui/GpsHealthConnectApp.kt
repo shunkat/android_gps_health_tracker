@@ -3,10 +3,9 @@ package com.shunk0616.gps_health_connect.ui
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.shunk0616.gpshealthconnect.ui.auth.AuthenticationScreen
 import com.shunk0616.gpshealthconnect.ui.common.theme.gpshealthconnectTheme
 
 @Composable
@@ -17,15 +16,7 @@ fun GpsHealthConnectApp() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Greeting("Android")
+            AuthenticationScreen()
         }
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
 }
