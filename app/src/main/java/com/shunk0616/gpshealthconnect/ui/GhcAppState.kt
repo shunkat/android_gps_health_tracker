@@ -7,7 +7,6 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.shunk0616.gpshealthconnect.ui.setting.navigation.navigateToSetting
 
 @Composable
 fun rememberGhcAppState(navController: NavHostController = rememberNavController()): GhcAppState {
@@ -37,5 +36,9 @@ class GhcAppState(
             } ?: previousDesitnation.value
         }
 
-    fun navigateToSetting() = navController.navigateToSetting()
+    val isAuthenticated: Boolean
+        @Composable get() {
+            // TODO: firebaseの認証情報を取得するdata層のrepository
+            return true
+        }
 }
