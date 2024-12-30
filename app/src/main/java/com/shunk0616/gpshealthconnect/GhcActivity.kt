@@ -13,10 +13,9 @@ class GhcActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val appState = rememberGhcAppState()
-            GhcTheme() {
+            GhcTheme {
                 GhcApp(appState, modifier = Modifier)
             }
-
         }
     }
 }

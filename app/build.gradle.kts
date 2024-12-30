@@ -65,7 +65,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.4")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
-
     // firebase
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")

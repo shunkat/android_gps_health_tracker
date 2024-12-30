@@ -12,9 +12,7 @@ import kotlinx.serialization.Serializable
 fun NavController.navigateToSetting(navOptions: NavOptions? = null) =
     navigate(SettingRoute, navOptions)
 
-fun NavGraphBuilder.settingScreen(
-    onBackClick: () -> Unit,
-) {
+fun NavGraphBuilder.settingScreen(onBackClick: () -> Unit) {
     composable<SettingRoute> {
         SettingRoute(onBackClick)
     }

@@ -5,18 +5,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-internal fun HomeRoute(
-    onSettingClick: () -> Unit,
-) {
+internal fun HomeRoute(onSettingClick: () -> Unit) {
     HomeScreen(
         onSettingClick = onSettingClick
     )
 }
 
 @Composable
-fun HomeScreen(
-    onSettingClick: () -> Unit
-) {
+fun HomeScreen(onSettingClick: () -> Unit) {
     Text(text = "Home Screen")
     Button(onClick = onSettingClick) {
         Text(text = "Click me")

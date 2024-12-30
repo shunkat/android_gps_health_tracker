@@ -10,10 +10,8 @@ import androidx.navigation.compose.rememberNavController
 import com.shunk0616.gpshealthconnect.ui.setting.navigation.navigateToSetting
 
 @Composable
-fun rememberGhcAppState(
-    navController: NavHostController = rememberNavController(),
-): GhcAppState {
-    return remember(navController){
+fun rememberGhcAppState(navController: NavHostController = rememberNavController()): GhcAppState {
+    return remember(navController) {
         GhcAppState(
             navController = navController
         )
@@ -21,7 +19,7 @@ fun rememberGhcAppState(
 }
 
 class GhcAppState(
-    val navController: NavHostController,
+    val navController: NavHostController
 ) {
     // 前回の画面を保存
     private val previousDesitnation = mutableStateOf<NavDestination?>(null)
@@ -29,7 +27,9 @@ class GhcAppState(
     // 現在の画面を取得、できなければ前回の画面を返す
     val currentDestination: NavDestination?
         @Composable get() {
-            val currentEntry = navController.currentBackStackEntryFlow.collectAsState(initial = null)
+            val currentEntry = navController.currentBackStackEntryFlow.collectAsState(
+                initial = null
+            )
             return currentEntry.value?.destination.also { destination ->
                 if (destination != null) {
                     previousDesitnation.value = destination
@@ -38,5 +38,4 @@ class GhcAppState(
         }
 
     fun navigateToSetting() = navController.navigateToSetting()
-
 }

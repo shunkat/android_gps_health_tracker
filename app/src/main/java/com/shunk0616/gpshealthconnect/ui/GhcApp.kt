@@ -14,35 +14,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.navigation.compose.rememberNavController
 import com.shunk0616.gpshealthconnect.navigation.GhcNavHost
 
 @Composable
-fun GhcApp(
-    appState: GhcAppState,
-    modifier: Modifier = Modifier,
-) {
+fun GhcApp(appState: GhcAppState, modifier: Modifier = Modifier) {
     Surface(
         modifier = modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background,
+        color = MaterialTheme.colorScheme.background
     ) {
         GhcAppInternal(
             appState = appState,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize()
         )
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun GhcAppInternal(
-    appState: GhcAppState,
-    modifier: Modifier = Modifier,
-) {
+internal fun GhcAppInternal(appState: GhcAppState, modifier: Modifier = Modifier) {
     Scaffold(
         modifier = modifier.testTag("GhcScaffold"),
-        containerColor = Color.Transparent,        // Scaffoldの背景を透明に
-        contentColor = MaterialTheme.colorScheme.onBackground,
+        containerColor = Color.Transparent,
+        contentColor = MaterialTheme.colorScheme.onBackground
     ) { innerPadding ->
         Column(
             Modifier
@@ -52,7 +45,7 @@ internal fun GhcAppInternal(
             Box(Modifier.weight(1f)) {
                 GhcNavHost(
                     appState = appState,
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize()
                 )
             }
         }
@@ -61,19 +54,17 @@ internal fun GhcAppInternal(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun MyTopBar(
-    onActionClick: () -> Unit,
-) {
+private fun MyTopBar(onActionClick: () -> Unit) {
     androidx.compose.material3.TopAppBar(
         title = {
             Text(text = "GHC App")
         },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = Color.Transparent,
+            containerColor = Color.Transparent
         ),
         actions = {
             // 設定アイコンなど
             // IconButton(onClick = onActionClick) { Icon(...) }
-        },
+        }
     )
 }
