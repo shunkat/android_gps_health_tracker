@@ -9,9 +9,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable object HomeRoute
 
-fun NavController.navigateToHome(navOptions: NavOptions) =
-    navigate(route = HomeRoute, navOptions)
-
 fun NavGraphBuilder.homeScreen(
     onSettingClick: () -> Unit,
 ) {
