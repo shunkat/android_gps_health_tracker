@@ -3,7 +3,6 @@ package com.shunk0616.gpshealthconnect.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.key.Key.Companion.Home
 import com.shunk0616.gpshealthconnect.ui.GhcAppState
 import com.shunk0616.gpshealthconnect.ui.home.navigation.HomeRoute
 import com.shunk0616.gpshealthconnect.ui.home.navigation.homeScreen
