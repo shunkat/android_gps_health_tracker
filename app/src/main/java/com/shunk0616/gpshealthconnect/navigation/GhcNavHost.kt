@@ -4,8 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.shunk0616.gpshealthconnect.ui.GhcAppState
+import com.shunk0616.gpshealthconnect.ui.authentication.navigation.authenticationScreen
 import com.shunk0616.gpshealthconnect.ui.home.navigation.HomeRoute
 import com.shunk0616.gpshealthconnect.ui.home.navigation.homeScreen
+import com.shunk0616.gpshealthconnect.ui.home.navigation.navigateToHome
 import com.shunk0616.gpshealthconnect.ui.setting.navigation.navigateToSetting
 import com.shunk0616.gpshealthconnect.ui.setting.navigation.settingScreen
 
@@ -23,5 +25,6 @@ fun GhcNavHost(appState: GhcAppState, modifier: Modifier = Modifier) {
         settingScreen(
             onBackClick = { navController.popBackStack() }
         )
+        authenticationScreen { navController.navigateToHome() }
     }
 }
