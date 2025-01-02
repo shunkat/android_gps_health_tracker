@@ -10,6 +10,7 @@ import com.shunk0616.gpshealthconnect.ui.home.navigation.homeScreen
 import com.shunk0616.gpshealthconnect.ui.home.navigation.navigateToHome
 import com.shunk0616.gpshealthconnect.ui.setting.navigation.navigateToSetting
 import com.shunk0616.gpshealthconnect.ui.setting.navigation.settingScreen
+import com.shunk0616.gpshealthconnect.ui.splash.navigation.splashScreen
 
 @Composable
 fun GhcNavHost(appState: GhcAppState, modifier: Modifier = Modifier) {
@@ -26,5 +27,7 @@ fun GhcNavHost(appState: GhcAppState, modifier: Modifier = Modifier) {
             onBackClick = { navController.popBackStack() }
         )
         authenticationScreen { navController.navigateToHome() }
+
+        splashScreen()
     }
 }
