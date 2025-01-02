@@ -9,6 +9,6 @@ import kotlinx.serialization.Serializable
 
 fun NavGraphBuilder.splashScreen() {
     composable<SplashRoute> {
-        SplashRoute(openAndPopUp = { route, popUp -> appState})
+        SplashRoute()
     }
 }
