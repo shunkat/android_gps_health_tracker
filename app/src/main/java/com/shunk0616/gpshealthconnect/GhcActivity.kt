@@ -7,7 +7,9 @@ import androidx.compose.ui.Modifier
 import com.shunk0616.gpshealthconnect.ui.GhcApp
 import com.shunk0616.gpshealthconnect.ui.common.theme.GhcTheme
 import com.shunk0616.gpshealthconnect.ui.rememberGhcAppState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GhcActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
