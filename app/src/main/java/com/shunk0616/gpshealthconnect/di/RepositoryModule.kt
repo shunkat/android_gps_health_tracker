@@ -1,3 +1,15 @@
 package com.shunk0616.gpshealthconnect.di
 
-class RepositoryModule
+import com.shunk0616.gpshealthconnect.data.repository.LogRepository
+import com.shunk0616.gpshealthconnect.data.repository.impl.LogRepositoryImpl
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+    @Binds
+    abstract fun provideLogRepository(impl: LogRepositoryImpl): LogRepository
+}
