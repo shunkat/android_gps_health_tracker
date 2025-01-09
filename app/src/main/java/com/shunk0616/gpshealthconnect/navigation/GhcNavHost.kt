@@ -27,7 +27,10 @@ fun GhcNavHost(appState: GhcAppState, modifier: Modifier = Modifier) {
         settingScreen(
             onBackClick = { navController.popBackStack() }
         )
-        authenticationScreen { navController.navigateToHome() }
+
+        authenticationScreen(
+            onFormCompleted = { navController.navigateToHome() }
+        )
 
         splashScreen(
             onAuthorized = { navController.navigateToHome() },
