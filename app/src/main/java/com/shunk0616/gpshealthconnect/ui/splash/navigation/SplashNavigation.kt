@@ -7,8 +7,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable object SplashRoute
 
-fun NavGraphBuilder.splashScreen() {
+fun NavGraphBuilder.splashScreen(onAuthorized: () -> Unit, onUnauthorized: () -> Unit) {
     composable<SplashRoute> {
-        SplashRoute()
+        SplashRoute(onAuthorized, onUnauthorized)
     }
 }
