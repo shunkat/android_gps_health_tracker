@@ -14,7 +14,10 @@ import com.shunk0616.gpshealthconnect.ui.splash.navigation.SplashRoute
 import com.shunk0616.gpshealthconnect.ui.splash.navigation.splashScreen
 
 @Composable
-fun GhcNavHost(appState: GhcAppState, modifier: Modifier = Modifier) {
+fun GhcNavHost(
+    appState: GhcAppState,
+    onShowSnackbar: suspend (String, String?) -> Boolean,
+    modifier: Modifier = Modifier) {
     val navController = appState.navController
     NavHost(
         navController = navController,
@@ -29,7 +32,8 @@ fun GhcNavHost(appState: GhcAppState, modifier: Modifier = Modifier) {
         )
 
         authenticationScreen(
-            onFormCompleted = { navController.navigateToHome() }
+            onAuthenticated = { navController.navigateToHome()},
+            onShowSnackbar = onShowSnackbar
         )
 
         splashScreen(
