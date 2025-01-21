@@ -12,7 +12,6 @@ import kotlinx.serialization.Serializable
 fun NavController.navigateToAuthentication(navOptions: NavOptions? = null) =
     navigate(AuthenticationRoute, navOptions)
 
-
 fun NavGraphBuilder.authenticationScreen(
     onAuthenticated: () -> Unit,
     onShowSnackbar: suspend (String, String?) -> Boolean

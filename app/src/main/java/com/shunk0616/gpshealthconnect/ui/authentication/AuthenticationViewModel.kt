@@ -4,7 +4,6 @@ import androidx.compose.runtime.mutableStateOf
 import com.shunk0616.gpshealthconnect.data.repository.AccountRepository
 import com.shunk0616.gpshealthconnect.data.repository.LogRepository
 import com.shunk0616.gpshealthconnect.ui.GhcViewModel
-import com.shunk0616.gpshealthconnect.ui.common.ext.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

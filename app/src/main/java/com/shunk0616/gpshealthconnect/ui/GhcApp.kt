@@ -27,7 +27,7 @@ fun GhcApp(appState: GhcAppState, modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        val snackbarHostState = remember{ SnackbarHostState() }
+        val snackbarHostState = remember { SnackbarHostState() }
         GhcAppInternal(
             appState = appState,
             snackbarHostState = snackbarHostState,
@@ -38,7 +38,11 @@ fun GhcApp(appState: GhcAppState, modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun GhcAppInternal(appState: GhcAppState, snackbarHostState: SnackbarHostState, modifier: Modifier = Modifier) {
+internal fun GhcAppInternal(
+    appState: GhcAppState,
+    snackbarHostState: SnackbarHostState,
+    modifier: Modifier = Modifier
+) {
     Scaffold(
         modifier = modifier.testTag("GhcScaffold"),
         snackbarHost = { SnackbarHost(snackbarHostState) },

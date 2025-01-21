@@ -16,13 +16,12 @@ import com.shunk0616.gpshealthconnect.R
 internal fun AuthenticationRoute(
     onAuthenticated: () -> Unit,
     onShowSnackbar: suspend (String, String?) -> Boolean,
-    viewModel: AuthenticationViewModel = hiltViewModel(
-    )
+    viewModel: AuthenticationViewModel = hiltViewModel()
 ) {
     AuthenticationScreen(
         onSignInClick = { viewModel.onSignInClick(onAuthenticated) },
         onShowSnackbar = onShowSnackbar,
-        errorMessage = viewModel.errorMessage,
+        errorMessage = viewModel.errorMessage
     )
 }
 
@@ -30,7 +29,7 @@ internal fun AuthenticationRoute(
 fun AuthenticationScreen(
     onSignInClick: () -> Unit,
     onShowSnackbar: suspend (String, String?) -> Boolean,
-    errorMessage: String?,
+    errorMessage: String?
 ) {
     LaunchedEffect(errorMessage) {
         if (errorMessage != null) {
@@ -44,7 +43,8 @@ fun AuthenticationScreen(
             onClick = { onSignInClick() },
             modifier = Modifier.padding(top = 16.dp)
         ) {
-            Text(text = stringResource(id = R.string.auth_button_label)
+            Text(
+                text = stringResource(id = R.string.auth_button_label)
             )
         }
         Text(text = stringResource(id = R.string.auth_screen_description))

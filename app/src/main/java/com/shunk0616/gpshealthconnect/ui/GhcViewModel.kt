@@ -10,11 +10,10 @@ import kotlinx.coroutines.launch
 open class GhcViewModel(
     private val logRepository: LogRepository
 ) : ViewModel() {
-    fun launchCatching(block: suspend CoroutineScope.() -> Unit) =
-        viewModelScope.launch(
-            CoroutineExceptionHandler { _, throwable ->
-                logRepository.logNonFatalCrash(throwable)
-            },
-            block = block
-        )
+    fun launchCatching(block: suspend CoroutineScope.() -> Unit) = viewModelScope.launch(
+        CoroutineExceptionHandler { _, throwable ->
+            logRepository.logNonFatalCrash(throwable)
+        },
+        block = block
+    )
 }
