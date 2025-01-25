@@ -7,10 +7,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
@@ -22,8 +27,10 @@ fun GhcApp(appState: GhcAppState, modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
+        val snackbarHostState = remember { SnackbarHostState() }
         GhcAppInternal(
             appState = appState,
+            snackbarHostState = snackbarHostState,
             modifier = Modifier.fillMaxSize()
         )
     }
@@ -31,9 +38,14 @@ fun GhcApp(appState: GhcAppState, modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun GhcAppInternal(appState: GhcAppState, modifier: Modifier = Modifier) {
+internal fun GhcAppInternal(
+    appState: GhcAppState,
+    snackbarHostState: SnackbarHostState,
+    modifier: Modifier = Modifier
+) {
     Scaffold(
         modifier = modifier.testTag("GhcScaffold"),
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         containerColor = Color.Transparent,
         contentColor = MaterialTheme.colorScheme.onBackground
     ) { innerPadding ->
@@ -45,6 +57,13 @@ internal fun GhcAppInternal(appState: GhcAppState, modifier: Modifier = Modifier
             Box(Modifier.weight(1f)) {
                 GhcNavHost(
                     appState = appState,
+                    onShowSnackbar = { message, action ->
+                        snackbarHostState.showSnackbar(
+                            message = message,
+                            actionLabel = action,
+                            duration = SnackbarDuration.Short
+                        ) == SnackbarResult.ActionPerformed
+                    },
                     modifier = Modifier.fillMaxSize()
                 )
             }

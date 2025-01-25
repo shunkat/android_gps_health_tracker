@@ -3,36 +3,50 @@ package com.shunk0616.gpshealthconnect.ui.authentication
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.shunk0616.gpshealthconnect.R
 
 @Composable
-internal fun AuthenticationRoute(onFormCompleted: () -> Unit) {
+internal fun AuthenticationRoute(
+    onAuthenticated: () -> Unit,
+    onShowSnackbar: suspend (String, String?) -> Boolean,
+    viewModel: AuthenticationViewModel = hiltViewModel()
+) {
     AuthenticationScreen(
-        onFormCompleted = onFormCompleted
+        onSignInClick = { viewModel.onSignInClick(onAuthenticated) },
+        onShowSnackbar = onShowSnackbar,
+        errorMessage = viewModel.errorMessage
     )
 }
 
 @Composable
-fun AuthenticationScreen(onFormCompleted: () -> Unit) {
+fun AuthenticationScreen(
+    onSignInClick: () -> Unit,
+    onShowSnackbar: suspend (String, String?) -> Boolean,
+    errorMessage: String?
+) {
+    LaunchedEffect(errorMessage) {
+        if (errorMessage != null) {
+            onShowSnackbar(errorMessage, null)
+        }
+    }
+
     Column(modifier = Modifier.padding(16.dp)) {
-        Text(text = "メアド認証Screen")
-
-        OutlinedTextField(
-            value = "",
-            onValueChange = { },
-            label = { Text("メアド入力欄") },
-            modifier = Modifier.padding(top = 16.dp)
-        )
-
+        Text(text = stringResource(id = R.string.auth_screen_title))
         Button(
-            onClick = onFormCompleted,
+            onClick = { onSignInClick() },
             modifier = Modifier.padding(top = 16.dp)
         ) {
-            Text(text = "入力完了")
+            Text(
+                text = stringResource(id = R.string.auth_button_label)
+            )
         }
+        Text(text = stringResource(id = R.string.auth_screen_description))
     }
 }

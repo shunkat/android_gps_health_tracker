@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">gpshealthconnect</string>
+
+    // auhentication screen
+    <string name="auth_screen_title">認証画面</string>
+    <string name="auth_button_label">このスマホで始める</string>
+    <string name="auth_screen_description">このボタンをクリックすると、この端末の情報が登録されます。</string>
 </resources>

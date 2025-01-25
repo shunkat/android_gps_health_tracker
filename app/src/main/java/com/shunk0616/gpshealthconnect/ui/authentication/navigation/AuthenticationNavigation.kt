@@ -12,8 +12,11 @@ import kotlinx.serialization.Serializable
 fun NavController.navigateToAuthentication(navOptions: NavOptions? = null) =
     navigate(AuthenticationRoute, navOptions)
 
-fun NavGraphBuilder.authenticationScreen(onFormCompleted: () -> Unit) {
+fun NavGraphBuilder.authenticationScreen(
+    onAuthenticated: () -> Unit,
+    onShowSnackbar: suspend (String, String?) -> Boolean
+) {
     composable<AuthenticationRoute> {
-        AuthenticationRoute(onFormCompleted)
+        AuthenticationRoute(onAuthenticated, onShowSnackbar)
     }
 }
