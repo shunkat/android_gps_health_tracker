@@ -35,8 +35,9 @@ class GpsRepository(private val context: Context) {
     }
 
     fun startLocationUpdates(callback: MyLocationCallback) {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != 0
-            && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != 0) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != 0 &&
+            ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != 0
+        ) {
             if (context is GhcActivity) {
                 ActivityCompat.requestPermissions(
                     context,

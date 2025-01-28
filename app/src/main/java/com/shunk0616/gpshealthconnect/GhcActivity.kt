@@ -37,7 +37,6 @@ class GhcActivity : ComponentActivity() {
                     modifier = Modifier.padding(innerPadding),
                     gpsRepository = gpsRepository
                 )
-
             }
 //            val appState = rememberGhcAppState()
 //            GhcTheme {
@@ -53,13 +52,14 @@ class GhcActivity : ComponentActivity() {
 }
 
 @Composable
-fun GPSViewer(modifier: Modifier = Modifier,gpsRepository: GpsRepository) {
+fun GPSViewer(modifier: Modifier = Modifier, gpsRepository: GpsRepository) {
     var latitude by remember { mutableStateOf("") }
     var longitude by remember { mutableStateOf("") }
-    Column (modifier = Modifier.fillMaxSize(),
+    Column(
+        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
-    ){
+    ) {
         Text(
             text = "緯度:$latitude\n経度:$longitude",
             modifier = modifier
@@ -74,12 +74,11 @@ fun GPSViewer(modifier: Modifier = Modifier,gpsRepository: GpsRepository) {
                 }
 
                 override fun onLocationError(error: String) {
-
                 }
             })
         }) {
             Text(
-                text = "位置情報取得",
+                text = "位置情報取得"
             )
         }
     }
