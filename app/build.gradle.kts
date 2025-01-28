@@ -71,6 +71,9 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.navigation:navigation-compose:2.8.4")
 
+    // location
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
     // serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
