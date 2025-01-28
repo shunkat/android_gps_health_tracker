@@ -48,8 +48,7 @@ class GhcActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        gpsRepository.
-        stopLocationUpdates()
+        gpsRepository.stopLocationUpdates()
     }
 }
 
