@@ -20,9 +20,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.shunk0616.gpshealthconnect.data.repository.GpsRepository
-import com.shunk0616.gpshealthconnect.ui.GhcApp
-import com.shunk0616.gpshealthconnect.ui.common.theme.GhcTheme
-import com.shunk0616.gpshealthconnect.ui.rememberGhcAppState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,8 +45,13 @@ class GhcActivity : ComponentActivity() {
 //            }
         }
     }
-}
 
+    override fun onDestroy() {
+        super.onDestroy()
+        gpsRepository.
+        stopLocationUpdates()
+    }
+}
 
 @Composable
 fun GPSViewer(modifier: Modifier = Modifier,gpsRepository: GpsRepository) {
@@ -64,7 +66,7 @@ fun GPSViewer(modifier: Modifier = Modifier,gpsRepository: GpsRepository) {
             modifier = modifier
         )
         Button(onClick = {
-            gpsRepository.getLastLocation(object : GpsRepository.MyLocationCallback {
+            gpsRepository.startLocationUpdates(object : GpsRepository.MyLocationCallback {
                 override fun onLocationResult(location: Location?) {
                     if (location != null) {
                         latitude = location.latitude.toString()
@@ -73,7 +75,7 @@ fun GPSViewer(modifier: Modifier = Modifier,gpsRepository: GpsRepository) {
                 }
 
                 override fun onLocationError(error: String) {
-                    // エラー処理
+
                 }
             })
         }) {
