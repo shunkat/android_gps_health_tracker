@@ -28,8 +28,8 @@ class GPSForegroundService : Service() {
                 }
             }
 
-            override fun onLocationError(e: Exception) {
-                Log.e("GPSForegroundService", "Location Error: ${e.message}")
+            override fun onLocationError(error: String) {
+                Log.e("GPSForegroundService", "Location Error: $error")
             }
         })
         startForegroundServiceWithNotification()
