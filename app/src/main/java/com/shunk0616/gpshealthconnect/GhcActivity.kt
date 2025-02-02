@@ -20,22 +20,23 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.shunk0616.gpshealthconnect.data.repository.GpsRepository
+import com.shunk0616.gpshealthconnect.domain.service.GPSLocationManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class GhcActivity : ComponentActivity() {
     // TODO:
     //  DIに組み込もう
-    private lateinit var gpsRepository: GpsRepository
+    private lateinit var gpsLocationManager: GPSLocationManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        gpsRepository = GpsRepository(this)
+        gpsLocationManager = GPSLocationManager(this)
         enableEdgeToEdge()
         setContent {
             Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                 GPSViewer(
                     modifier = Modifier.padding(innerPadding),
-                    gpsRepository = gpsRepository
+                    gpsLocationManager = gpsLocationManager
                 )
             }
 //            val appState = rememberGhcAppState()
@@ -47,12 +48,12 @@ class GhcActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        gpsRepository.stopLocationUpdates()
+        gpsLocationManager.stopLocationUpdates()
     }
 }
 
 @Composable
-fun GPSViewer(modifier: Modifier = Modifier, gpsRepository: GpsRepository) {
+fun GPSViewer(modifier: Modifier = Modifier, gpsLocationManager: GPSLocationManager) {
     var latitude by remember { mutableStateOf("") }
     var longitude by remember { mutableStateOf("") }
     Column(
@@ -65,7 +66,7 @@ fun GPSViewer(modifier: Modifier = Modifier, gpsRepository: GpsRepository) {
             modifier = modifier
         )
         Button(onClick = {
-            gpsRepository.startLocationUpdates(object : GpsRepository.MyLocationCallback {
+            gpsLocationManager.startLocationUpdates(object : GPSLocationManager.MyLocationCallback {
                 override fun onLocationResult(location: Location?) {
                     if (location != null) {
                         latitude = location.latitude.toString()
