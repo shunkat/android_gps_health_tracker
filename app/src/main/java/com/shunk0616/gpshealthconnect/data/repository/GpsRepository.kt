@@ -14,4 +14,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.shunk0616.gpshealthconnect.GhcActivity
 
-class GpsRepository
+interface GpsRepository {
+    suspend fun saveLocation(longitude: Double, latitude: Double)
+}
