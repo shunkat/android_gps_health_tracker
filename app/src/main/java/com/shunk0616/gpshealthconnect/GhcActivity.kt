@@ -1,5 +1,8 @@
 package com.shunk0616.gpshealthconnect
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -19,18 +22,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.shunk0616.gpshealthconnect.data.repository.GpsRepository
+import androidx.core.app.ActivityCompat
+import com.shunk0616.gpshealthconnect.domain.service.GPSForegroundService
 import com.shunk0616.gpshealthconnect.domain.service.GPSLocationManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class GhcActivity : ComponentActivity() {
-    // TODO:
-    //  DIに組み込もう
+    // TODO: DIに組み込もう
     private lateinit var gpsLocationManager: GPSLocationManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         gpsLocationManager = GPSLocationManager(this)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // 必要な場合、パーミッションを要求
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.POST_NOTIFICATIONS), 1000)
+        }else {
+            // 権限が既にある場合はサービスを開始する
+            startGPSService()
+        }
+
         enableEdgeToEdge()
         setContent {
             Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -49,6 +63,18 @@ class GhcActivity : ComponentActivity() {
     override fun onDestroy() {
         super.onDestroy()
         gpsLocationManager.stopLocationUpdates()
+
+        stopGPSService()
+    }
+
+    private fun startGPSService() {
+        val intent = Intent(this, GPSForegroundService::class.java)
+        startService(intent) // サービスの起動
+    }
+
+    private fun stopGPSService() {
+        val intent = Intent(this, GPSForegroundService::class.java)
+        stopService(intent) // サービスの停止
     }
 }
 
