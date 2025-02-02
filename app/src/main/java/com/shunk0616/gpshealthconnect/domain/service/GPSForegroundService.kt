@@ -13,9 +13,15 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.shunk0616.gpshealthconnect.GhcActivity
 import com.shunk0616.gpshealthconnect.R
+import com.shunk0616.gpshealthconnect.data.repository.GpsRepository
+import javax.inject.Inject
 
-class GPSForegroundService : Service() {
+// TODO: DIのためにInterfaceと内部実装に分ける
+class GPSForegroundService @Inject constructor(
+    private val gpsRepository: GpsRepository
+) : Service() {
     private lateinit var gpsLocationManager: GPSLocationManager
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -23,8 +29,7 @@ class GPSForegroundService : Service() {
         gpsLocationManager.startLocationUpdates(object : GPSLocationManager.MyLocationCallback {
             override fun onLocationResult(location: Location?) {
                 location?.let {
-                    // TODO: Firestoreへの送信処理
-                    Log.d("GPSForegroundService", "Location: ${location.latitude}, ${location.longitude}")
+                    gpsRepository.saveLocation(latitude = it.latitude, longitude = it.longitude)
                 }
             }
 
