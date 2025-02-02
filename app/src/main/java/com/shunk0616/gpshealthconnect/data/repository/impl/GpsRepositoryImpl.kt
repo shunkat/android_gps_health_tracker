@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GpsRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore
 ) : GpsRepository {
-    override suspend fun saveLocation(latitude: Double, longitude: Double) {
+    override fun saveLocation(latitude: Double, longitude: Double) {
         firestore.collection("gps").add(
             hashMapOf(
                 "latitude" to latitude,
