@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+
 
     <application
         android:name="com.shunk0616.gpshealthconnect.GhcApplication"
@@ -33,6 +36,9 @@
         <service
             android:name="com.shunk0616.gpshealthconnect.domain.service.gps.GPSForegroundService"
             android:foregroundServiceType="location"/>
+        <service
+            android:name="com.shunk0616.gpshealthconnect.domain.service.step.StepCountForegroundService"
+            android:foregroundServiceType="health" />
     </application>
 
 </manifest>

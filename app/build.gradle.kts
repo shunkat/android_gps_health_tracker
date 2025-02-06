@@ -15,7 +15,7 @@ android {
     compileSdk = 35
     defaultConfig {
         applicationId = "com.shunk0616.gpshealthconnect"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -73,6 +73,9 @@ dependencies {
     // location
     implementation("com.google.android.gms:play-services-location:21.3.0")
 
+    // health connect
+    implementation ("androidx.health.connect:connect-client:1.1.0-alpha11")
+
     // serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
@@ -84,6 +87,7 @@ dependencies {
     implementation("com.google.firebase:firebase-functions")
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-crashlytics")
+    implementation("androidx.appcompat:appcompat:1.7.0")
 
     // Dagger hilt
     val hiltVersion = "2.53.1"
