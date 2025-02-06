@@ -1,19 +1,24 @@
 package com.shunk0616.gpshealthconnect.data.repository
 
-import android.Manifest
-import android.content.Context
-import android.location.Location
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationAvailability
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
-import com.shunk0616.gpshealthconnect.GhcActivity
+import com.google.firebase.firestore.FirebaseFirestore
+import javax.inject.Inject
 
-interface GpsRepository {
-    fun saveLocation(longitude: Double, latitude: Double)
+class GpsRepository @Inject constructor(
+    private val firestore: FirebaseFirestore
+) {
+    fun saveLocation(latitude: Double, longitude: Double) {
+        firestore.collection("gps")
+            .add(
+                hashMapOf(
+                    "latitude" to latitude,
+                    "longitude" to longitude
+                )
+            )
+            .addOnSuccessListener {
+                println("Location saved")
+            }
+            .addOnFailureListener {
+                println("Error saving location")
+            }
+    }
 }
