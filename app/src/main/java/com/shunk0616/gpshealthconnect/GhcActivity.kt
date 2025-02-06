@@ -23,8 +23,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
-import com.shunk0616.gpshealthconnect.domain.service.GPSForegroundService
-import com.shunk0616.gpshealthconnect.domain.service.GPSLocationManager
+import com.shunk0616.gpshealthconnect.domain.service.gps.GPSForegroundService
+import com.shunk0616.gpshealthconnect.domain.service.gps.GPSLocationManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name="com.shunk0616.gpshealthconnect.domain.service.GPSForegroundService"
+            android:name="com.shunk0616.gpshealthconnect.domain.service.gps.GPSForegroundService"
             android:foregroundServiceType="location"/>
     </application>
 
