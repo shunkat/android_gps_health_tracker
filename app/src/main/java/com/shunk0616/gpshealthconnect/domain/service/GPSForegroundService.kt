@@ -11,17 +11,24 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.shunk0616.gpshealthconnect.GhcActivity
 import com.shunk0616.gpshealthconnect.R
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class GPSForegroundService: Service() {
     private lateinit var gpsLocationManager: GPSLocationManager
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var authentication: FirebaseAuth
 
     override fun onCreate() {
         super.onCreate()
         firestore = FirebaseFirestore.getInstance()
+        authentication = FirebaseAuth.getInstance()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -29,15 +36,46 @@ class GPSForegroundService: Service() {
         gpsLocationManager = GPSLocationManager(this)
         gpsLocationManager.startLocationUpdates(object : GPSLocationManager.MyLocationCallback {
             override fun onLocationResult(location: Location?) {
-                location?.let {
-                    firestore.collection("gps")
-                        .add(
-                            hashMapOf(
-                                "latitude" to it.latitude,
-                                "longitude" to it.longitude
-                            )
+                location?.let { loc ->
+                    // ここで Firestore への保存を行う
+                    val user = authentication.currentUser
+                    if (user != null) {
+                        val userId = user.uid
+                        // ドキュメントID用に当日の日付(yyyy-MM-dd)を生成
+                        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                        val dateString = dateFormat.format(Date())
+
+                        // 保存するオブジェクト (lat, lng, time)
+                        val locationData = hashMapOf(
+                            "lat" to loc.latitude,
+                            "lng" to loc.longitude,
+                            "time" to System.currentTimeMillis()
                         )
 
+                        // ドキュメント参照: raw > userId > gps > yyyy-MM-dd
+                        val docRef = firestore.collection("raw")
+                            .document(userId)
+                            .collection("gps")
+                            .document(dateString)
+
+                        // locations という配列フィールドを更新し、オブジェクトを追加
+                        docRef.update("locations", FieldValue.arrayUnion(locationData))
+                            .addOnSuccessListener {
+                                Log.d("GPSForegroundService", "Location successfully appended.")
+                            }
+                            .addOnFailureListener { e ->
+                                // ドキュメントが存在しない場合などは set で新規作成する
+                                docRef.set(mapOf("locations" to listOf(locationData)))
+                                    .addOnSuccessListener {
+                                        Log.d("GPSForegroundService", "New document created with initial location data.")
+                                    }
+                                    .addOnFailureListener { ex ->
+                                        Log.e("GPSForegroundService", "Failed to create document: ${ex.message}")
+                                    }
+                            }
+                    } else {
+                        Log.e("GPSForegroundService", "No authenticated user found.")
+                    }
                 }
             }
 
