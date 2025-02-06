@@ -1,4 +1,4 @@
-package com.shunk0616.gpshealthconnect.domain.service
+package com.shunk0616.gpshealthconnect.domain.service.gps
 
 import android.Manifest
 import android.content.Context

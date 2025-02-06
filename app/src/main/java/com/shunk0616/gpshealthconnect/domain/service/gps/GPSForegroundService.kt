@@ -1,4 +1,4 @@
-package com.shunk0616.gpshealthconnect.domain.service
+package com.shunk0616.gpshealthconnect.domain.service.gps
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
