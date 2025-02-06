@@ -1,8 +1,10 @@
 package com.shunk0616.gpshealthconnect.di
 
 import com.shunk0616.gpshealthconnect.data.repository.AccountRepository
+import com.shunk0616.gpshealthconnect.data.repository.GpsRepository
 import com.shunk0616.gpshealthconnect.data.repository.LogRepository
 import com.shunk0616.gpshealthconnect.data.repository.impl.AccountRepositoryImpl
+import com.shunk0616.gpshealthconnect.data.repository.impl.GpsRepositoryImpl
 import com.shunk0616.gpshealthconnect.data.repository.impl.LogRepositoryImpl
 import dagger.Binds
 import dagger.Module
@@ -17,4 +19,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideAccountRepository(impl: AccountRepositoryImpl): AccountRepository
+
+    @Binds
+    abstract fun provideGpsRepository(impl: GpsRepositoryImpl): GpsRepository
 }

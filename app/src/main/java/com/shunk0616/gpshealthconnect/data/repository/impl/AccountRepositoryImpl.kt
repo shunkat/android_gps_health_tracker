@@ -9,7 +9,7 @@ class AccountRepositoryImpl @Inject constructor(
     private val auth: FirebaseAuth
 ) : AccountRepository {
     override val isAuthorized: Boolean
-        get() = false
+        get() = auth.currentUser != null
 
     override suspend fun login() {
         auth.signInAnonymously().await()
