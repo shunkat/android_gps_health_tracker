@@ -19,10 +19,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import com.shunk0616.gpshealthconnect.domain.service.gps.GPSLocationManager
 import com.shunk0616.gpshealthconnect.navigation.GhcNavHost
 
 @Composable
-fun GhcApp(appState: GhcAppState, modifier: Modifier = Modifier) {
+fun GhcApp(appState: GhcAppState, modifier: Modifier = Modifier, gpsLocationManager: GPSLocationManager) {
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -31,7 +32,8 @@ fun GhcApp(appState: GhcAppState, modifier: Modifier = Modifier) {
         GhcAppInternal(
             appState = appState,
             snackbarHostState = snackbarHostState,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            gpsLocationManager = gpsLocationManager
         )
     }
 }
@@ -41,7 +43,8 @@ fun GhcApp(appState: GhcAppState, modifier: Modifier = Modifier) {
 internal fun GhcAppInternal(
     appState: GhcAppState,
     snackbarHostState: SnackbarHostState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    gpsLocationManager: GPSLocationManager
 ) {
     Scaffold(
         modifier = modifier.testTag("GhcScaffold"),
@@ -64,7 +67,8 @@ internal fun GhcAppInternal(
                             duration = SnackbarDuration.Short
                         ) == SnackbarResult.ActionPerformed
                     },
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    gpsLocationManager = gpsLocationManager
                 )
             }
         }

@@ -38,7 +38,6 @@ fun AuthenticationScreen(
     }
 
     Column(modifier = Modifier.padding(16.dp)) {
-        Text(text = stringResource(id = R.string.auth_screen_title))
         Button(
             onClick = { onSignInClick() },
             modifier = Modifier.padding(top = 16.dp)

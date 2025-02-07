@@ -3,6 +3,7 @@ package com.shunk0616.gpshealthconnect.ui.home.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.shunk0616.gpshealthconnect.domain.service.gps.GPSLocationManager
 import com.shunk0616.gpshealthconnect.ui.home.HomeRoute
 import kotlinx.serialization.Serializable
 
@@ -17,8 +18,8 @@ fun NavController.navigateToHome() {
     }
 }
 
-fun NavGraphBuilder.homeScreen(onSettingClick: () -> Unit) {
+fun NavGraphBuilder.homeScreen(gpsLocationManager: GPSLocationManager) {
     composable<HomeRoute> {
-        HomeRoute(onSettingClick)
+        HomeRoute(gpsLocationManager)
     }
 }
