@@ -14,9 +14,13 @@ import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.shunk0616.gpshealthconnect.R
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class StepCountForegroundService : Service(), SensorEventListener {
 
@@ -66,27 +70,45 @@ class StepCountForegroundService : Service(), SensorEventListener {
             .build()
     }
 
-    // センサー値が変化した時
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_STEP_COUNTER) {
-            // event.values[0] に累計歩数が入る (端末初回起動後からの累計値)
+            // 累計歩数
             val steps = event.values[0]
+
+            // ドキュメント名として yyyy-MM-dd を作成
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val dateStr = dateFormat.format(Date())
+
+            // 時刻を取得（例として HH:mm:ss 形式）
+            val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+            val timeStr = timeFormat.format(Date())
+
+            // 配列に追加するオブジェクト
+            val stepData = mapOf(
+                "time" to timeStr,
+                "step" to steps
+            )
+
+            // Firebase に保存（stepData 配列に追加）
+            // 既存ドキュメントがない場合でも作成されるよう、set(...) + merge を使用
+            val updates = hashMapOf<String, Any>(
+                "stepData" to FieldValue.arrayUnion(stepData)
+            )
+
             firestore.collection("raw")
                 .document(authentication.currentUser?.uid ?: "")
                 .collection("step")
-                .document("today")
-                // merge オプションを付けると、既存のドキュメントを上書きしつつ、
-                // 他のフィールドは上書きしない挙動になる
-                .set(mapOf("steps" to steps), SetOptions.merge())
+                .document(dateStr)
+                .set(updates, SetOptions.merge())
                 .addOnSuccessListener {
                     Log.d("StepCountForegroundService", "Step count successfully updated.")
                 }
                 .addOnFailureListener {
                     Log.e("StepCountForegroundService", "Failed to update step count: ${it.message}")
                 }
-
         }
     }
+
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         // 必要なら実装
