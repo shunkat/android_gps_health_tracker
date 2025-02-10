@@ -3,6 +3,7 @@ package com.shunk0616.gpshealthconnect.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
+import com.shunk0616.gpshealthconnect.domain.service.gps.GPSLocationManager
 import com.shunk0616.gpshealthconnect.ui.GhcAppState
 import com.shunk0616.gpshealthconnect.ui.authentication.navigation.authenticationScreen
 import com.shunk0616.gpshealthconnect.ui.authentication.navigation.navigateToAuthentication
@@ -17,7 +18,8 @@ import com.shunk0616.gpshealthconnect.ui.splash.navigation.splashScreen
 fun GhcNavHost(
     appState: GhcAppState,
     onShowSnackbar: suspend (String, String?) -> Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    gpsLocationManager: GPSLocationManager
 ) {
     val navController = appState.navController
     NavHost(
@@ -26,7 +28,7 @@ fun GhcNavHost(
         modifier = modifier
     ) {
         homeScreen(
-            onSettingClick = { navController.navigateToSetting() }
+            gpsLocationManager = gpsLocationManager
         )
         settingScreen(
             onBackClick = { navController.popBackStack() }
