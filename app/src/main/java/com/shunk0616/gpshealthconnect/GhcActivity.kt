@@ -143,6 +143,8 @@ class GhcActivity : AppCompatActivity() {
                     gpsLocationManager = gpsLocationManager
                 )
             }
+        ) {
+            Text(text = "Get Location")
         }
     }
 

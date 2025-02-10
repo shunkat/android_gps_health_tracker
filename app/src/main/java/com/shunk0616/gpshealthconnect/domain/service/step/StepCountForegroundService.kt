@@ -108,8 +108,7 @@ class StepCountForegroundService : Service(), SensorEventListener {
                 }
         }
     }
-
-
+    
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         // 必要なら実装
     }
