@@ -79,8 +79,8 @@ class StepCountForegroundService : Service(), SensorEventListener {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val dateStr = dateFormat.format(Date())
 
-            // 時刻を取得（例として HH:mm:ss 形式）
-            val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+            // 時刻を取得（ミリ秒まで含むフォーマット）
+            val timeFormat = SimpleDateFormat("HH:mm:ss.SSS", Locale.getDefault())
             val timeStr = timeFormat.format(Date())
 
             // 配列に追加するオブジェクト
@@ -121,7 +121,6 @@ class StepCountForegroundService : Service(), SensorEventListener {
     }
 
     override fun onBind(intent: Intent?): IBinder? {
-        // バインドサービスとして利用しない場合は null
         return null
     }
 
