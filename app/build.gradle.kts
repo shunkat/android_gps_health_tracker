@@ -93,6 +93,8 @@ dependencies {
 
     // unit test
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     // hiltのunit test
     testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     kspTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
@@ -102,6 +104,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation("org.mockito:mockito-core:5.11.0")
     // hiltのinstrumented test
     androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     kspAndroidTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
